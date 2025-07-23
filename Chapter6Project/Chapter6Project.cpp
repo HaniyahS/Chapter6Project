@@ -10,20 +10,27 @@ double calcPerimeter(double length, double width);
 double calcArea(double length, double width);
 void displayProperties(double length, double width, double area, double perimeter);
 
+
 int main() {
     double length, width, area, perimeter;
+    
+    int quit = 0;
+    while (quit == 0) {
+        //Calling function
 
-    //Calling function
+        getLengthWidth(length, width);
 
-    getLengthWidth(length, width);
+        //Assigning
+        perimeter = calcPerimeter(length, width);
+        area = calcArea(length, width);
 
-    //Assigning
-    perimeter = calcPerimeter(length, width);
-    area = calcArea(length, width);
+        // Display the properties of the rectangle
+        displayProperties(length, width, area, perimeter);
 
-    // Display the properties of the rectangle
-    displayProperties(length, width, area, perimeter);
+        cout << "\nPress 0 to continue. \nPress any other number to exit\n";
+        cin >> quit;
 
+    }
     return 0;
 }
 
