@@ -5,52 +5,23 @@
 using namespace std;
 
 // Function prototypes
-void getLengthWidth(double& length, double& width);
-double calcPerimeter(double length, double width);
-double calcArea(double length, double width);
-void displayProperties(double length, double width, double area, double perimeter);
+int getRegInfo(int region, int accidents);
 
 int main() {
-    double length, width, area, perimeter;
+    int region, accidents;
 
-    //Calling function
-
-    getLengthWidth(length, width);
-
-    //Assigning
-    perimeter = calcPerimeter(length, width);
-    area = calcArea(length, width);
-
-    // Display the properties of the rectangle
-    displayProperties(length, width, area, perimeter);
-
-    return 0;
+    getRegInfo(int region , int accidents);
 }
 
-// Function to get length and width from the user
-void getLengthWidth(double& length, double& width) {
-    cout << "Enter length: ";
-    cin >> length;
-    cout << "Enter width: ";
-    cin >> width;
+// Function to get region info
+int getRegInfo(int region, int accidents) {
+    cout << "\nCentral = 1  North = 2  South = 3\nEast = 4  West = 5\nEnter region number: ";
+    cin >> region;
+    cout << "\nEnter number of accidents: ";
+    cin >> accidents;
+    if (accidents < 0) {
+        cout << "\nNumber of accidents can't be negative";
+        cout << "\nEnter number of accidents: ";
+        cin >> accidents;
+    }
 }
-
-// Function to calculate the perimeter of the rectangle
-double calcPerimeter(double length, double width) {
-    return 2 * (length + width);
-}
-
-// Function to calculate the area of the rectangle
-double calcArea(double length, double width) {
-    return length * width;
-}
-
-// Function to display the properties of the rectangle
-void displayProperties(double length, double width, double area, double perimeter) {
-    cout << "\nRectangle Properties:";
-    cout << "\nLength: " << length;
-    cout << "\nWidth: " << width;
-    cout << "\nArea: " << area;
-    cout << "\nPerimeter: " << perimeter << endl;
-}
-
