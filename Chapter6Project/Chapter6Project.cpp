@@ -2,19 +2,55 @@
 //
 
 #include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+// Function prototypes
+void getLengthWidth(double& length, double& width);
+double calcPerimeter(double length, double width);
+double calcArea(double length, double width);
+void displayProperties(double length, double width, double area, double perimeter);
+
+int main() {
+    double length, width, area, perimeter;
+
+    //Calling function
+
+    getLengthWidth(length, width);
+
+    //Assigning
+    perimeter = calcPerimeter(length, width);
+    area = calcArea(length, width);
+
+    // Display the properties of the rectangle
+    displayProperties(length, width, area, perimeter);
+
+    return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+// Function to get length and width from the user
+void getLengthWidth(double& length, double& width) {
+    cout << "Enter length: ";
+    cin >> length;
+    cout << "Enter width: ";
+    cin >> width;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+// Function to calculate the perimeter of the rectangle
+double calcPerimeter(double length, double width) {
+    return 2 * (length + width);
+}
+
+// Function to calculate the area of the rectangle
+double calcArea(double length, double width) {
+    return length * width;
+}
+
+// Function to display the properties of the rectangle
+void displayProperties(double length, double width, double area, double perimeter) {
+    cout << "\nRectangle Properties:";
+    cout << "\nLength: " << length;
+    cout << "\nWidth: " << width;
+    cout << "\nArea: " << area;
+    cout << "\nPerimeter: " << perimeter << endl;
+}
+
