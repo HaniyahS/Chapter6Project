@@ -2,26 +2,31 @@
 //
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
-// Function prototypes
-int getRegInfo(int region, int accidents);
+//Function Prototype
+double getCelsius(int);
 
 int main() {
-    int region, accidents;
+    //Global constants
+    const int MIN = 0 , MAX = 20;
 
-    getRegInfo(int region , int accidents);
-}
+    //Setting up table and loop
+    cout << "Farenheit 0 - 20 to Celsius Temperature Table\n\nFarenheit             Celsius";
+    for (int F = MIN; F <= MAX; F++) {
 
-// Function to get region info
-int getRegInfo(int region, int accidents) {
-    cout << "\nCentral = 1  North = 2  South = 3\nEast = 4  West = 5\nEnter region number: ";
-    cin >> region;
-    cout << "\nEnter number of accidents: ";
-    cin >> accidents;
-    if (accidents < 0) {
-        cout << "\nNumber of accidents can't be negative";
-        cout << "\nEnter number of accidents: ";
-        cin >> accidents;
+        cout << "\n " << setw(2) << F;
+        cout << " " << setw(23) << getCelsius(F);
+        cout << endl;
     }
+    return 0;
 }
+
+//Function definition
+double getCelsius(int F) {
+
+    return (5 * (F - 32)) / 9;
+
+}
+
