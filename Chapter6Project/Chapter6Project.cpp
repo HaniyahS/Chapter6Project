@@ -7,7 +7,7 @@
 using namespace std;
 
 //Function Prototype
-int getRegInfo(int , int , int , int , int);
+int getRegInfo(int& northAccidents , int& southAccidents , int& eastAccidents , int& westAccidents , int& centralAccidents);
 void showsLowest();
 
 // Variables
@@ -27,7 +27,7 @@ int main() {
 }
 
 // Asks for number of accidents and validates input.
-int getRegInfo(int northAccidents , int southAccidents , int eastAccidents , int westAccidents , int centralAccidents) {
+int getRegInfo(int& northAccidents , int& southAccidents , int& eastAccidents , int& westAccidents , int& centralAccidents) {
     cout << "For the North region:\n";
     cout << "Enter the number of accidents during last year: ";
     cin >> northAccidents;
