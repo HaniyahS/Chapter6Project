@@ -6,9 +6,9 @@
 using namespace std;
 
 //Function Prototype
-int getRooms(int Rooms);
-double getSqFt(double sum);
-double getPricePG(double price);
+int getRooms(int& Rooms);
+double getSqFt(double& sum);
+double getPricePG(double& price);
 
 const double LabourPerHour = 25.00;
 
@@ -80,7 +80,7 @@ o laborCharge += labor * laborChargePerHour
 
 
 //numRooms = getRooms() for each room
-int getRooms(int Rooms) {
+int getRooms(int& Rooms) {
 cout << "How many rooms are to be painted: ";
 cin >> Rooms;
 
@@ -97,7 +97,7 @@ else {
 }
 
 //squareFeet = getSqFt()
-double getSqFt(double sum) {
+double getSqFt(double& sum) {
 g++;
 
 cout << "\nSq ft. of wall space in room " << g << ": ";
@@ -116,7 +116,7 @@ else {
 }
 
 //paintPrice = getPricePerGallon()
-double getPricePG(double price) {
+double getPricePG(double& price) {
 cout << "\nPrice of paint per gallon: ";
 cin >> price;
 
