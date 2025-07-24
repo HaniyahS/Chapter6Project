@@ -6,106 +6,129 @@
 using namespace std;
 
 //Function Prototype
-void getScore(double &);
-double calcAverage(double, double, double, double, double);
-double isLower(double, double, double, double, double);
-double isHigher(double, double, double, double, double);
+int getRooms(int Rooms);
+double getSqFt(double sum);
+double getPricePG(double price);
 
-int i = 1;
+const double LabourPerHour = 25.00;
+
+//Forgot about these ngl
+double paintCharge = 0, labourCharge = 0, gallonsNeeded = 0, labourHours = 0 , sqft , price , sum = 0;
+
+int Rooms , g = 0;
+
+double PaintReq, LabourReq, CostPaint, LabourCharges, TotalCost;
+
 int main() {
-   
-    double score1, score2, score3, score4, score5;
-   
-    getScore(score1);
-    i++;
-    getScore(score2);
-    i++;
-    getScore(score3);
-    i++;
-    getScore(score4);
-    i++;
-    getScore(score5);
 
-    double sum = score1 + score2 + score3 + score4 + score5;
-    cout << "\nContestant's score: " << sum;
-    cout << calcAverage(score1, score2, score3, score4, score5);
-    cout << endl;
+    getRooms(Rooms);
+    for (int i = 0; i < Rooms; i++) {
 
-    return 0;
-}
+        getSqFt(sum);
 
-//Function definition
-void getScore(double &score) {
-  
-    cout << "\nEnter judge " << i << "'s score: ";
+    }
+
+    getPricePG(price);
+
+    PaintReq = sum / 110;
+    LabourReq = PaintReq * 8;
+    CostPaint = price * PaintReq;
+    LabourCharges = LabourReq * LabourPerHour;
+    TotalCost = LabourCharges + CostPaint;
+
+    cout << "\nTotal SqFt. painted: \t " << sum;
+    cout << "\nPrice per gallon: \t$" << price;
+    cout << "\nGallons required: \t " << PaintReq;
+    cout << "\nHours required: \t " << LabourReq;
+    cout << "\nCost of paint: \t\t$" << CostPaint;
+    cout << "\nLabour charges: \t$" << LabourCharges;
+    cout << "\nTotal cost: \t\t$" << TotalCost;
+
+
+   //A painting company has determined that for every 110 square feet of wall space, 1 gallon of paint
+   //and 8 hours of labor will be required.The company charges $25.00 per hour for labor.
+
+    /*
     
-        cin >> score;
-        
+    It should then display the following data :
+    • The number of gallons of paint required
+        • The hours of labor required
+        • The cost of the paint
+        • The labor charges
+        • The total cost of the paint job
 
-        while (score < 0 || score > 10) {
-            cout << "\nThe score cannot be less than 0 or over 10";
-        }
+    gallons per square feet: 1/110.
+    • hours of labor per square feet: 8/110.
+    • labor charge per hour: $25
+    
+    main()
+    Provide an estimate for painting including cost for paint, cost for labor, gallons of paint
+required, number of labor hours
+
+Algorithm: 
+
+
+o gallons = gallonsForRoom(squareFeet)
+o gallonsNeeded += gallons
+o paintCharge += gallons * paintPrice
+o labor = sqft * laborPerSqFt
+o laborHours += labor
+o laborCharge += labor * laborChargePerHour
+    */
+}
+//Function definition
+
+
+//numRooms = getRooms() for each room
+int getRooms(int Rooms) {
+cout << "How many rooms are to be painted: ";
+cin >> Rooms;
+
+if(Rooms <= 1){
+    cout << "\nNumber of rooms has to be over 1.\nTry again.";
+    cout << "How many rooms are to be painted: ";
+    cin >> Rooms;
+
+}
+else {
+    return Rooms;
+}
 
 }
 
-double calcAverage(double score1, double score2, double score3, double score4, double score5) {
-    double lowest = isLower(score1, score2, score3, score4, score5);
-    double highest = isHigher(score1, score2, score3, score4, score5);
-    double average, sum = score1 + score2 + score3 + score4 + score5;
+//squareFeet = getSqFt()
+double getSqFt(double sum) {
+g++;
 
-    sum -= lowest;
-    sum -= highest;
+cout << "\nSq ft. of wall space in room " << g << ": ";
+cin >> sqft;
 
-    average = sum / 3;
-
-    cout << endl;
-    cout << "\nlowest = " << lowest << "\nhighest = " << highest << "\naverage = " << average;
-    return average;
+if (sqft <= 0) {
+    cout << "Square footage has to be over 0.\nTry again.";
+    cout << "\nSq ft. of wall space in room " << g << ": ";
+    cin >> sqft;
 }
-
-double isHigher(double score1, double score2, double score3, double score4, double score5) {
-
-    if (score1 > score2 && score1 > score3 && score1 > score4 && score1 > score5) {
-        return score1;
-
-    }
-    else if (score2 > score1 && score2 > score3 && score2 > score4 && score2 > score5) {
-        return score2;
-
-    }
-    else if (score3 > score1 && score3 > score2 && score3 > score4 && score3 > score5) {
-        return score3;
-
-    }
-    else if (score4 > score1 && score4 > score2 && score4 > score3 && score4 > score5) {
-        return score4;
-    }
-    else {
-        return score5;
-    }
+else {
+    sum += sqft;
+    return sum;
+}
 
 }
 
-double isLower(double score1, double score2, double score3, double score4, double score5) {
+//paintPrice = getPricePerGallon()
+double getPricePG(double price) {
+cout << "\nPrice of paint per gallon: ";
+cin >> price;
 
-    if (score1 < score2 && score1 < score3 && score1 < score4 && score1 < score5) {
-        return score1;
-
-    }
-    else if(score2 < score1 && score2 < score3 && score2 < score4 && score2 < score5){
-        return score2;
-
-    }
-    else if (score3 < score1 && score3 < score2 && score3 < score4 && score3 < score5) {
-        return score3;
-
-    }
-    else if(score4 < score1 && score4 < score2 && score4 < score3 && score4 < score5){
-        return score4;
-
-    }
-    else {
-        return score5;
-    }
+if (price <= 10) {
+cout << "\nThe price has to be over 10.\nTry again.";
+cout << "\nPrice of paint per gallon: ";
+cin >> price;
+}
+else {
+    return price;
+}
 
 }
+
+
