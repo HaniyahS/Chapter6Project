@@ -14,8 +14,8 @@ void displayProperties(double length, double width, double area, double perimete
 int main() {
     double length, width, area, perimeter;
     
-    int quit = 0;
-    while (quit == 0) {
+    int go = 0;
+    while (go == 0) {
         //Calling function
 
         getLengthWidth(length, width);
@@ -28,7 +28,7 @@ int main() {
         displayProperties(length, width, area, perimeter);
 
         cout << "\nPress 0 to continue. \nPress any other number to exit\n";
-        cin >> quit;
+        cin >> go;
 
     }
     return 0;
