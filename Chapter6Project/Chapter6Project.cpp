@@ -38,8 +38,20 @@ int main() {
 void getLengthWidth(double& length, double& width) {
     cout << "Enter length: ";
     cin >> length;
-    cout << "Enter width: ";
-    cin >> width;
+    while(length <= 0) {
+        cout << "\nLength cannot be 0 or less. \nTry again: ";
+        cin >> length;
+    }
+    
+        cout << "Enter width: ";
+        cin >> width;
+
+        while (width <= 0) {
+            cout << "\nWidth cannot be 0 or less. \nTry again: ";
+            cin >> width;
+        }
+
+    
 }
 
 // Function to calculate the perimeter of the rectangle
