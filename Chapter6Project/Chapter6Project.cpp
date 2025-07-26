@@ -6,7 +6,7 @@
 using namespace std;
 
 //Function Prototype
-double getCelsius(int);
+double getCelsius(double);
 
 int main() {
     //Global constants
@@ -17,14 +17,15 @@ int main() {
     for (int F = MIN; F <= MAX; F++) {
 
         cout << "\n " << setw(2) << F;
-        cout << " " << setw(23) << getCelsius(F);
-        cout << endl;
+        cout << " " << setw(25) << getCelsius(F);
+        
     }
+    cout << endl;
     return 0;
 }
 
 //Function definition
-double getCelsius(int F) {
+double getCelsius(double F) {
 
     return (5 * (F - 32)) / 9;
 
