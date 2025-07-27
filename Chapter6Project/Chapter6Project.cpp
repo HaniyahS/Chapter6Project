@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
 
 //Function Prototype
@@ -10,27 +11,35 @@ int getRooms(int& Rooms);
 double getSqFt(double& sum);
 double getPricePG(double& price);
 
-const double LabourPerHour = 25.00;
 
-//Forgot about these ngl
-double paintCharge = 0, labourCharge = 0, gallonsNeeded = 0, labourHours = 0 , sqft , price , sum = 0;
+double sqft;
+int g = 0;
 
-int Rooms , g = 0;
-
-double PaintReq, LabourReq, CostPaint, LabourCharges, TotalCost;
 
 int main() {
+    double paintCharge = 0, labourCharge = 0, gallonsNeeded = 0, labourHours = 0, price, sum = 0;
+    double LabourPerHour = 25.00;
+    int Rooms;
 
+    double PaintReq, LabourReq, CostPaint, LabourCharges, TotalCost;
+
+    int numRooms;
+    double sqft = 0;
+    numRooms = getRooms(Rooms);
+        
     getRooms(Rooms);
-    for (int i = 0; i < Rooms; i++) {
+    for (int i = 0; i < numRooms; i++) {
 
-        getSqFt(sum);
+        
+        sqft += getSqFt(sum);
 
     }
 
     getPricePG(price);
 
+    
     PaintReq = sum / 110;
+    ceil(PaintReq);
     LabourReq = PaintReq * 8;
     CostPaint = price * PaintReq;
     LabourCharges = LabourReq * LabourPerHour;
@@ -38,7 +47,7 @@ int main() {
 
     cout << "\nTotal SqFt. painted: \t " << sum;
     cout << "\nPrice per gallon: \t$" << price;
-    cout << "\nGallons required: \t " << PaintReq;
+    cout << "\nGallons required: \t " << ceil(PaintReq);
     cout << "\nHours required: \t " << LabourReq;
     cout << "\nCost of paint: \t\t$" << CostPaint;
     cout << "\nLabour charges: \t$" << LabourCharges;
