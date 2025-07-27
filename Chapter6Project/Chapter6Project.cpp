@@ -7,17 +7,18 @@
 using namespace std;
 
 //Function Prototype
-int getRegInfo(int& northAccidents , int& southAccidents , int& eastAccidents , int& westAccidents , int& centralAccidents);
+string getRegInfo(string& Region);
+int getAccidents(int& accidents);
 void showsLowest();
 
 // Variables
-int accidents, northAccidents = 0, southAccidents = 0, eastAccidents = 0, westAccidents = 0, centralAccidents = 0;
-
-
+int accidents, minAccidents , northAccidents = 0, southAccidents = 0, eastAccidents = 0, westAccidents = 0, centralAccidents = 0;
+int numRegions;
+string Region, minRegion;
 
 int main() {
     //Getting Region info
-   getRegInfo(northAccidents , southAccidents , eastAccidents , westAccidents , centralAccidents);
+   getRegInfo(Region);
     
 
     // Calls function to find which region had the lowest amount.
@@ -27,7 +28,40 @@ int main() {
 }
 
 // Asks for number of accidents and validates input.
-int getRegInfo(int& northAccidents , int& southAccidents , int& eastAccidents , int& westAccidents , int& centralAccidents) {
+string getRegInfo(string& Region) {
+    
+    cout << "Enter # of regions: ";
+    cin >> numRegions;
+    
+    for (int i = 1; i < numRegions; i++) {
+        cout << "\nEnter name of Region " << i << ": ";
+        cin >> Region;
+        
+
+        minRegion = Region;
+
+        getAccidents(accidents);
+
+        
+    }
+    return minRegion;
+}
+
+int getAccidents(int& accidents) {
+    cout << "\nEnter the # of accidents for Region " << Region << ": ";
+    cin >> accidents;
+
+    while (accidents < 0) {
+        cout << "\n# of accidents cannot be less than 0.\nTry again: ";
+        cin >> accidents;
+
+    }
+    minAccidents = accidents;
+
+    return minAccidents;
+}
+    /*
+    
     cout << "For the North region:\n";
     cout << "Enter the number of accidents during last year: ";
     cin >> northAccidents;
@@ -100,19 +134,23 @@ int getRegInfo(int& northAccidents , int& southAccidents , int& eastAccidents , 
     }
 
     
-
+    
+    */
     
 
-   
 
-    
-
-}
 
 // Compares region amounts
 void showsLowest() {
-    // Prints results
-    cout << "\nNorth region amount of accidents: " << northAccidents << endl;
+    if (accidents > minAccidents) {
+        minAccidents = accidents;
+
+    }
+    cout << "\n" << Region << " " << minAccidents;
+
+
+    /*
+     cout << "\nNorth region amount of accidents: " << northAccidents << endl;
     cout << "South region amount of accidents: " << southAccidents << endl;
     cout << "East region amount of accidents: " << eastAccidents << endl;
     cout << "West region amount of accidents: " << westAccidents << endl;
@@ -163,4 +201,8 @@ void showsLowest() {
         cout << "\nThe Central region had the lowest amount of accidents with ";
         cout << centralAccidents << " accident(s).\n";
     }
+    
+    */
+    // Prints results
+   
 }
