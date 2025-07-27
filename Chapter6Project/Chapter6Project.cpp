@@ -39,7 +39,6 @@ int main() {
 
     
     PaintReq = sum / 110;
-    ceil(PaintReq);
     LabourReq = PaintReq * 8;
     CostPaint = price * PaintReq;
     LabourCharges = LabourReq * LabourPerHour;
