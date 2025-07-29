@@ -3,109 +3,83 @@
 
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
 
-//Function Prototype
-void getScore(double &);
-double calcAverage(double, double, double, double, double);
-double isLower(double, double, double, double, double);
-double isHigher(double, double, double, double, double);
+// Function Prototypes
+void getScore(double& currentScore, double& scoreSum, double& lowestScore, double& highestScore, int judgeNum);
+double calcAverage(int numJudges, double scoreSum, double lowestScore, double highestScore);
+bool isHigher(double , double);
+bool isLower(double , double);
 
-int i = 1;
 int main() {
-   
-    double score1, score2, score3, score4, score5;
-   
-    getScore(score1);
-    i++;
-    getScore(score2);
-    i++;
-    getScore(score3);
-    i++;
-    getScore(score4);
-    i++;
-    getScore(score5);
+	int numJudges;
 
-    double sum = score1 + score2 + score3 + score4 + score5;
-    cout << "\nContestant's score: " << sum;
-    cout << calcAverage(score1, score2, score3, score4, score5);
-    cout << endl;
+	// Initialize lowestScore high, highestScore low
+	double score, lowestScore = 100.0, highestScore = -1.0, scoreSum = 0.0;  
 
-    return 0;
+	cout << "Enter # of judges: ";
+	cin >> numJudges;
+
+	// Validate number of judges
+	if (numJudges < 3) {
+		cout << "At least 3 judges are required to drop the highest and lowest scores." << endl;
+		return 1;
+	}
+
+	for (int i = 1; i <= numJudges; i++) {
+		getScore(score, scoreSum, lowestScore, highestScore, i);
+
+		
+		if (isLower(score, lowestScore)) {
+			lowestScore = score;
+		}
+
+		if (isHigher(score, highestScore)) {
+			highestScore = score;
+		}
+	}
+
+	cout << "\nContestant's score: ";
+	cout << calcAverage(numJudges, scoreSum, highestScore, lowestScore);
+
+	cout << endl;
+
+	return 0;
 }
 
-//Function definition
-void getScore(double &score) {
-  
-    cout << "\nEnter judge " << i << "'s score: ";
-    
-        cin >> score;
-        
+// Function definition
+void getScore(double& currentScore, double& scoreSum, double& lowestScore, double& highestScore, int judgeNum) {
 
-        while (score < 0 || score > 10) {
-            cout << "\nThe score cannot be less than 0 or over 10";
-        }
+	cout << "\nEnter judge" << judgeNum << "'s score: ";
+	cin >> currentScore;
 
+	
+	while (currentScore < 0 || currentScore > 10) {
+		cout << "\nThe score cannot be less than 0 or over 10.\nTry again: ";
+		cin >> currentScore;
+	}
+	scoreSum += currentScore;
 }
 
-double calcAverage(double score1, double score2, double score3, double score4, double score5) {
-    double lowest = isLower(score1, score2, score3, score4, score5);
-    double highest = isHigher(score1, score2, score3, score4, score5);
-    double average, sum = score1 + score2 + score3 + score4 + score5;
+double calcAverage(int numJudges, double scoreSum, double highestScore, double lowestScore) {
+	double average, WithoutHighestLowest;
 
-    sum -= lowest;
-    sum -= highest;
+	scoreSum -= lowestScore; 
+	scoreSum -= highestScore; 
 
-    average = sum / 3;
+	WithoutHighestLowest = numJudges - 2;
+	average = scoreSum / WithoutHighestLowest;
 
-    cout << endl;
-    cout << "\nlowest = " << lowest << "\nhighest = " << highest << "\naverage = " << average;
-    return average;
+	cout << endl;
+	cout << "\nlowest = " << lowestScore << "\nhighest = " << highestScore << "\naverage = " << average;
+	return average;
 }
 
-double isHigher(double score1, double score2, double score3, double score4, double score5) {
-
-    if (score1 > score2 && score1 > score3 && score1 > score4 && score1 > score5) {
-        return score1;
-
-    }
-    else if (score2 > score1 && score2 > score3 && score2 > score4 && score2 > score5) {
-        return score2;
-
-    }
-    else if (score3 > score1 && score3 > score2 && score3 > score4 && score3 > score5) {
-        return score3;
-
-    }
-    else if (score4 > score1 && score4 > score2 && score4 > score3 && score4 > score5) {
-        return score4;
-    }
-    else {
-        return score5;
-    }
-
+bool isLower(double newValue, double currentLowest) {
+	return newValue < currentLowest;
 }
 
-double isLower(double score1, double score2, double score3, double score4, double score5) {
-
-    if (score1 < score2 && score1 < score3 && score1 < score4 && score1 < score5) {
-        return score1;
-
-    }
-    else if(score2 < score1 && score2 < score3 && score2 < score4 && score2 < score5){
-        return score2;
-
-    }
-    else if (score3 < score1 && score3 < score2 && score3 < score4 && score3 < score5) {
-        return score3;
-
-    }
-    else if(score4 < score1 && score4 < score2 && score4 < score3 && score4 < score5){
-        return score4;
-
-    }
-    else {
-        return score5;
-    }
-
+bool isHigher(double newValue, double currentHighest) {
+	return newValue > currentHighest;
 }
