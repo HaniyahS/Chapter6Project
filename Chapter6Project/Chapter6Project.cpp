@@ -8,15 +8,16 @@ using namespace std;
 
 // Function Prototypes
 void getScore(double& currentScore, double& scoreSum, double& lowestScore, double& highestScore, int judgeNum);
-double calcAverage(int numJudges, double scoreSum, double lowestScore, double highestScore);
+double calcAverage(int& numJudges, double& scoreSum, double& lowestScore, double& highestScore , double& average);
 bool isHigher(double , double);
 bool isLower(double , double);
+void display(double , double , double);
 
 int main() {
 	int numJudges;
 
 	// Initialize lowestScore high, highestScore low
-	double score, lowestScore = 100.0, highestScore = -1.0, scoreSum = 0.0;  
+	double score, lowestScore = 100.0, highestScore = -1.0, scoreSum = 0.0, average;
 
 	cout << "Enter # of judges: ";
 	cin >> numJudges;
@@ -41,9 +42,11 @@ int main() {
 	}
 
 	cout << "\nContestant's score: ";
-	cout << calcAverage(numJudges, scoreSum, highestScore, lowestScore);
+	cout << calcAverage(numJudges, scoreSum, highestScore, lowestScore , average);
 
 	cout << endl;
+
+	display(lowestScore , highestScore , average);
 
 	return 0;
 }
@@ -62,8 +65,8 @@ void getScore(double& currentScore, double& scoreSum, double& lowestScore, doubl
 	scoreSum += currentScore;
 }
 
-double calcAverage(int numJudges, double scoreSum, double highestScore, double lowestScore) {
-	double average, WithoutHighestLowest;
+double calcAverage(int& numJudges, double& scoreSum, double& highestScore, double& lowestScore , double& average) {
+	double WithoutHighestLowest;
 
 	scoreSum -= lowestScore; 
 	scoreSum -= highestScore; 
@@ -71,9 +74,10 @@ double calcAverage(int numJudges, double scoreSum, double highestScore, double l
 	WithoutHighestLowest = numJudges - 2;
 	average = scoreSum / WithoutHighestLowest;
 
-	cout << endl;
-	cout << "\nlowest = " << lowestScore << "\nhighest = " << highestScore << "\naverage = " << average;
+	
 	return average;
+	
+	
 }
 
 bool isLower(double newValue, double currentLowest) {
@@ -82,4 +86,8 @@ bool isLower(double newValue, double currentLowest) {
 
 bool isHigher(double newValue, double currentHighest) {
 	return newValue > currentHighest;
+}
+
+void display(double lowestScore , double highestScore , double average) {
+	cout << "\nlowest = " << lowestScore << "\nhighest = " << highestScore << "\naverage = " << average;
 }
